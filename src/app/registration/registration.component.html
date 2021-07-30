@@ -1,0 +1,29 @@
+<form [formGroup]="registrationForm" novalidate class="login">
+    <h2>Registration</h2>
+    <div class="form-group">
+      <input class="form-control" name="email" formControlName="email"
+      type="email" placeholder="email" minlength="8" maxlength="30"/>
+      <div class="alert alert-danger"
+        *ngIf="registrationForm.controls['email'].invalid && registrationForm.controls['email'].touched">
+        invalid email
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input class="form-control" name="password" formControlName="userPassword"
+      [type]="passwordVisible ? 'text' : 'password'" placeholder="password" maxlength="20"/>
+      <div class="alert alert-danger"
+        *ngIf="registrationForm.controls['userPassword'].invalid && registrationForm.controls['userPassword'].touched">
+        Must contain 6 or more characters that have at least one number and one upper and lower case letter in english.
+      </div>
+      <div class="watch-btn" (click)="watchPass()"></div>
+    </div>
+
+    <button (click)="SignUp()" class="submit-btn" [disabled]="registrationForm.invalid" type="submit">Registration</button>
+    <div class="login__messengers">
+      <button (click)="loginWithGoogle()"><img src="assets/free-icon-google-symbol-2875404.png" alt="google"></button>
+      <button (click)="loginWithFaceBook()"><img src="assets/facebook.png" alt="facebook"></button>
+      <button (click)="loginWithGithub()"><img src="assets/GitHub-Mark.png" alt="GitHub"></button>
+    </div>
+    <a href="/login" class="login__registration">Do u have account?</a>
+</form>

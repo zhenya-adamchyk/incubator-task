@@ -1,0 +1,59 @@
+* {
+  font-size: 20px;
+}
+
+.login {
+	display: flex;
+  flex-direction: column;
+  align-items: center;
+	padding: 25px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	width: 500px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  &__registration {
+    color: rgb(47, 172, 74);
+    cursor: pointer;
+    margin-top: 20px;
+  }
+}
+
+.form-group {
+  width: 100%;
+  position: relative;
+}
+
+input {
+	display: block;
+	width: 100%;
+	border-radius: 10px;
+	border: 1px solid #ccc;
+	padding: 10px;
+  margin-top: 15px;
+}
+
+.watch-btn {
+  background-image: url('/assets/watch-pass.png');
+  background-position: center center;
+  background-size: cover;
+  position: absolute;
+  top: 23px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.submit-btn {
+	width: 180px;
+	border-radius: 5px;
+	background-color: rgb(47, 172, 74);
+	color: white;
+  cursor: pointer;
+  margin-top: 20px;
+  padding: 10px;
+}
