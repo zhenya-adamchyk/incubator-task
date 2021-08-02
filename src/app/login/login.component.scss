@@ -20,6 +20,20 @@
     cursor: pointer;
     margin-top: 20px;
   }
+
+  &__messengers {
+    display: flex;
+    justify-content: space-evenly;
+    width: 60%;
+    margin-top: 20px;
+
+    button > img {
+      width: 40px;
+      height: 40px;
+      background-position: center center;
+      background-size: cover;
+    }
+   }
 }
 
 .form-group {
@@ -52,6 +66,16 @@ input {
 	width: 180px;
 	border-radius: 5px;
 	background-color: rgb(47, 172, 74);
+	color: white;
+  cursor: pointer;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.log-out-btn {
+	width: 180px;
+	border-radius: 5px;
+	background-color: rgb(172, 62, 47);
 	color: white;
   cursor: pointer;
   margin-top: 20px;

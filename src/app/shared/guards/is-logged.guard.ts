@@ -8,18 +8,18 @@ import { AuthService } from '../services/auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
-
+export class IsLoggedGuard implements CanActivate {
   constructor(private authService: AuthService, public router: Router) { }
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       return this.authService.checkAuth().pipe(map((user: User) => {
-        if (!user) {
-          this.router.navigate(['/login']);
+        console.log(!!user)
+        if (!!user) {
+          this.router.navigate(['/main']);
           return false;
         }
         return true;
       }));
-    }
+  }
 }

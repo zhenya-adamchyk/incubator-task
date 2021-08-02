@@ -18,36 +18,46 @@ export class RegistrationComponent {
 
   nameValue = '';
   passwordValue = '';
+  errorMessage = '';
+  messengerMessage = '';
   passwordVisible = false;
   registrationForm: FormGroup;
 
   constructor(public db: AngularFireDatabase, public authService: AuthService, public router: Router) {
     this.registrationForm = new FormGroup({
       "email": new FormControl('', [Validators.required, Validators.email]),
-      "userPassword": new FormControl('', [Validators.required, Validators.pattern("(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{6,}")])
+      "userPassword": new FormControl('', [Validators.required, Validators.pattern("[0-9a-zA-Z]{6,}")])
     });
     // db.list('/courses').valueChanges().subscribe(console.log)
   }
 
-  async loginWithGoogle() {
-    await this.authService.loginWithGoogle();
-    this.router.navigate(['/main']);
+  loginWithGoogle() {
+    this.authService.loginWithGoogle()
+    .then(() => this.router.navigate(['/main']))
+    .catch(error => this.messengerMessage = error.message);
   }
 
-  async loginWithFaceBook() {
-    await this.authService.loginWithFaceBook();
-    this.router.navigate(['/main']);
+  loginWithFaceBook() {
+    this.authService.loginWithFaceBook()
+    .then(() => this.router.navigate(['/main']))
+    .catch(error => {
+      if (error.message !== 'The popup has been closed by the user before finalizing the operation.') {
+        this.messengerMessage = error.message
+      }
+    });
   }
 
-  async loginWithGithub() {
-    await this.authService.loginWithGithub();
-    this.router.navigate(['/main']);
+  loginWithGithub() {
+    this.authService.loginWithGithub()
+    .then(() => this.router.navigate(['/main']))
+    .catch(error => this.messengerMessage = error.message);
   }
 
-  async SignUp() {
+  SignUp() {
     if (this.registrationForm.value.email && this.registrationForm.value.userPassword) {
-      await this.authService.SignUp(this.registrationForm.value.email, this.registrationForm.value.userPassword);
-      this.router.navigate(['/main']);
+      this.authService.SignUp(this.registrationForm.value.email, this.registrationForm.value.userPassword)
+      .then(() => this.router.navigate(['/main']))
+      .catch(error => this.errorMessage = error.message);
     }
   }
 

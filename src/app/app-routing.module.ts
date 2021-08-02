@@ -4,12 +4,13 @@ import { AuthGuard } from './shared/guards/auth.guard';
 import { LoginComponent } from './login/login.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { IsLoggedGuard } from './shared/guards/is-logged.guard';
 
 export const routes: Routes = [
-  {path: '', component: RegistrationComponent},
-  {path: 'login', component: LoginComponent},
+  {path: '', component: RegistrationComponent, canActivate: [IsLoggedGuard]},
+  {path: 'login', component: LoginComponent, canActivate: [IsLoggedGuard]},
   {path: 'main', component: MainPageComponent, canActivate: [AuthGuard]},
-  {path: '**', component: RegistrationComponent},
+  {path: '**', redirectTo: ''},
 ];
 
 @NgModule({

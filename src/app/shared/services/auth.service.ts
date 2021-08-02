@@ -16,46 +16,34 @@ export class AuthService {
 
   constructor(private fireAuth: AngularFireAuth, private router: Router) { }
 
-  checkAuth(): Observable<boolean> {
+  checkAuth(): Observable<User> {
     return this.fireAuth.authState.pipe(map((user: unknown) => {
       this.userData = user as User;
-      if (!(!!user)) {
-        this.router.navigate([''])
-      }
-      return !!user;
+      return this.userData;
     }))
   }
 
   async loginWithGoogle() {
     await this.fireAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
-    .catch(err => console.log('cant log with google', err));
   }
 
   async loginWithFaceBook() {
     await this.fireAuth.signInWithPopup(new firebase.auth.FacebookAuthProvider())
-    .catch(err => console.log('cant log with FaceBook', err));
   }
 
   async loginWithGithub() {
     await this.fireAuth.signInWithPopup(new firebase.auth.GithubAuthProvider())
-    .catch(err => console.log('cant log with Github', err));
   }
 
   async SignUp(email: string, password: string) {
     await this.fireAuth.createUserWithEmailAndPassword(email, password)
-    .catch(error => console.log('Something is wrong:', error.message));
   }
 
- SignIn(email: string, password: string) {
-   this.fireAuth.signInWithEmailAndPassword(email, password)
-   .then(res => {
-     console.log('You are in!', res);
-     this.router.navigate(['/main']);
-   })
-   .catch(error => console.log('Something went wrong:', error.message));
- }
+  async SignIn(email: string, password: string) {
+    await this.fireAuth.signInWithEmailAndPassword(email, password)
+  }
 
-  SignOut(): void {
-    this.fireAuth.signOut();
+  async SignOut() {
+    await this.fireAuth.signOut();
   }
 }

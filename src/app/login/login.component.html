@@ -8,17 +8,22 @@
       invalid email
     </div>
   </div>
-
   <div class="form-group">
     <input class="form-control" name="password" formControlName="userPassword"
     [type]="passwordVisible ? 'text' : 'password'" placeholder="password" maxlength="20"/>
     <div class="alert alert-danger"
       *ngIf="registrationForm.controls['userPassword'].invalid && registrationForm.controls['userPassword'].touched">
-      Must contain 6 or more characters that have at least one number and one upper and lower case letter in english.
+      must be at least 6 characters long consisting of numbers and english letters
     </div>
     <div class="watch-btn" (click)="watchPass()"></div>
   </div>
-
+  <div class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}</div>
   <button (click)="SignIn()" class="submit-btn" [disabled]="registrationForm.invalid">Sign in</button>
-  <a href="/" class="login__registration">Back to registration</a>
+  <div class="login__messengers">
+    <button (click)="loginWithGoogle()"><img src="assets/free-icon-google-symbol-2875404.png" alt="google"></button>
+    <button (click)="loginWithFaceBook()"><img src="assets/facebook.png" alt="facebook"></button>
+    <button (click)="loginWithGithub()"><img src="assets/GitHub-Mark.png" alt="GitHub"></button>
+  </div>
+  <div style="color: red;" class="alert alert-danger" *ngIf="messengerMessage">{{messengerMessage}}</div>
+  <a routerLink="/" class="login__registration">Back to registration</a>
 </form>
