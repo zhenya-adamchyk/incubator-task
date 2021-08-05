@@ -1,0 +1,62 @@
+.card {
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 260px;
+  background-color: white;
+  text-align: center;
+  border: 2px solid black;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+  cursor: pointer;
+  &:hover {
+    transition: 1s;
+    transform: translateY(-5px);
+  }
+
+  &__title {
+    height: 20%;
+  }
+
+  &__date {
+    height: 30%;
+  }
+
+  &__categories {
+    display: flex;
+    height: 50%;
+  }
+}
+
+.admin {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+
+  &__approve-btn {
+    background-color: rgb(50, 185, 72);
+  }
+
+  &__delete-btn {
+    background-color: rgb(245, 19, 19);
+  }
+}
+
+.admin-btn {
+  border-radius: 5px;
+  width: 70px;
+  font-size: 15px;
+}
+
+:host {
+  margin: 10px;
+  width: calc(100% / 4 - 20px);
+  @media (max-width: 1100px) {
+    width: calc(100% / 2 - 25px);
+  }
+  @media (max-width: 600px) {
+    width: 100%;
+  }
+}

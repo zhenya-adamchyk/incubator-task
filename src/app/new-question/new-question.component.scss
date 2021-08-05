@@ -1,0 +1,75 @@
+.main-container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.question {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid black;
+  border-radius: 20px;
+  text-align: center;
+
+  &__categories {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+    font-size: 20px;
+  }
+
+  &__form {
+    width: 80%;
+  }
+}
+
+.buttons-container {
+  width: 30%;
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+  height: 40px;
+
+  &__ok-btn {
+    width: 60px;
+    border-radius: 5px;
+    background-color: #2fac4a;
+    color: white;
+    cursor: pointer;
+  }
+
+  &__cancel-btn {
+    width: 60px;
+    border-radius: 5px;
+    background-color: rgb(219, 73, 28);
+    color: white;
+    cursor: pointer;
+  }
+}
+
+input {
+	display: block;
+	width: 100%;
+	border-radius: 10px;
+	border: 1px solid black;
+}
+
+.text {
+  width: 100%;
+  display: block;
+	border-radius: 10px;
+	border: 1px solid black;
+	padding: 10px;
+  margin: 15px 0;
+  height: 300px;
+}
+
+.alert-msg {
+  font-size: 20px;
+  color: red;
+}
+
+
+

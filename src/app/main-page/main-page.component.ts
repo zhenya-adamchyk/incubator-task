@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Card } from '../shared/interfaces/card';
 import { AuthService } from '../shared/services/auth.service';
+import { QuestionService } from '../shared/services/question.service';
 
 @Component({
   selector: 'app-main-page',
@@ -9,18 +11,17 @@ import { AuthService } from '../shared/services/auth.service';
 })
 export class MainPageComponent implements OnInit {
 
-  userMail: string;
+  cards: Card[] = [];
 
-  constructor(public authService: AuthService, public router: Router) {
-    this.userMail = this.authService.userData.email;
-   }
+  constructor(public authService: AuthService, public router: Router, private httpService: QuestionService) {
 
-  ngOnInit(): void {
   }
 
-  SignOut() {
-    this.authService.SignOut()
-    .then(() => this.router.navigate(['/']))
+  ngOnInit(): void {
+    this.httpService.getCards().subscribe((data: Card[]) => {
+      this.cards = data
+      console.log(data)
+    });
   }
 
 }

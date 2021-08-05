@@ -11,12 +11,13 @@ import { Router } from '@angular/router';
   styles: [`
   input.ng-touched.ng-invalid {border:solid red 2px;}
   input.ng-touched.ng-valid {border:solid green 2px;}
-`],
+  `],
 })
+
 export class LoginComponent {
 
-  nameValue = '';
-  passwordValue = '';
+  // nameValue = '';
+  // passwordValue = '';
   errorMessage = '';
   messengerMessage = '';
   passwordVisible = false;
@@ -32,7 +33,11 @@ export class LoginComponent {
   loginWithGoogle() {
     this.authService.loginWithGoogle()
     .then(() =>this.router.navigate(['/main']))
-    .catch(error => this.messengerMessage = error.message);
+    .catch(error => {
+      if (error.message !== 'The popup has been closed by the user before finalizing the operation.') {
+        this.messengerMessage = error.message
+      }
+    });
   }
 
   loginWithFaceBook() {
@@ -48,7 +53,11 @@ export class LoginComponent {
   loginWithGithub() {
     this.authService.loginWithGithub()
     .then(() =>this.router.navigate(['/main']))
-    .catch(error => this.messengerMessage = error.message);
+    .catch(error => {
+      if (error.message !== 'The popup has been closed by the user before finalizing the operation.') {
+        this.messengerMessage = error.message
+      }
+    });
   }
 
   watchPass(): void {
@@ -62,6 +71,4 @@ export class LoginComponent {
       .catch(error => this.errorMessage = error.message);
     }
   }
-
-
 }

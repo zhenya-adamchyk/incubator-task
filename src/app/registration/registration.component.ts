@@ -11,7 +11,7 @@ import { Router } from '@angular/router'
   styles: [`
         input.ng-touched.ng-invalid {border:solid red 2px;}
         input.ng-touched.ng-valid {border:solid green 2px;}
-    `],
+        `],
 })
 
 export class RegistrationComponent {
@@ -28,13 +28,16 @@ export class RegistrationComponent {
       "email": new FormControl('', [Validators.required, Validators.email]),
       "userPassword": new FormControl('', [Validators.required, Validators.pattern("[0-9a-zA-Z]{6,}")])
     });
-    // db.list('/courses').valueChanges().subscribe(console.log)
   }
 
   loginWithGoogle() {
     this.authService.loginWithGoogle()
     .then(() => this.router.navigate(['/main']))
-    .catch(error => this.messengerMessage = error.message);
+    .catch(error => {
+      if (error.message !== 'The popup has been closed by the user before finalizing the operation.') {
+        this.messengerMessage = error.message
+      }
+    });
   }
 
   loginWithFaceBook() {
@@ -50,7 +53,11 @@ export class RegistrationComponent {
   loginWithGithub() {
     this.authService.loginWithGithub()
     .then(() => this.router.navigate(['/main']))
-    .catch(error => this.messengerMessage = error.message);
+    .catch(error => {
+      if (error.message !== 'The popup has been closed by the user before finalizing the operation.') {
+        this.messengerMessage = error.message
+      }
+    });
   }
 
   SignUp() {

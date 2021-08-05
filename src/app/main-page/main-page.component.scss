@@ -1,9 +1,41 @@
-.log-out-btn {
-	width: 180px;
-	border-radius: 5px;
-	background-color: rgb(214, 58, 37);
-	color: white;
+.main-container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.cards-container {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.add-question {
+  &::after {
+    width: 30px;
+    height: 30px;
+    content: '';
+    border-bottom: 7px solid #2fac4a;
+    position: absolute;
+    top: 8px;
+    left: 20px;
+  }
+  &::before {
+    width: 30px;
+    height: 30px;
+    content: '';
+    border-left: 7px solid #2fac4a;
+    position: absolute;
+    top: 19px;
+    left: 31px;
+  }
   cursor: pointer;
-  margin-top: 20px;
-  padding: 10px;
+  position: absolute;
+  right: 0;
+  top: calc(100% + 15px);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 2px solid #2fac4a;
 }

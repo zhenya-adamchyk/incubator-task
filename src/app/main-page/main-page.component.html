@@ -1,3 +1,7 @@
-<h1>{{userMail}}</h1>
-<button (click)="SignOut()" class="log-out-btn" >Sign out</button>
-
+<div class="main-container">
+  <app-filters></app-filters>
+  <div class="cards-container">
+    <app-card *ngFor="let card of cards" [card]="card"></app-card>
+    <div routerLink="/new-question" class="add-question"></div>
+  </div>
+</div>
