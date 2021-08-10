@@ -1,0 +1,8 @@
+<div class="main-container">
+  <app-filters></app-filters>
+  <div class="cards-container">
+    <app-card *ngFor="let card of cards" [question]="card"></app-card>
+    <div routerLink="/new-question" class="add-question">Add</div>
+  </div>
+  <p class="response-error" *ngIf="responseError">{{responseError}}</p>
+</div>

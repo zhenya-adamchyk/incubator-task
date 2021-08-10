@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'incubator-task';
 
-  constructor() {
-  }
+  isHeaderHidden: string;
+
+  constructor() { }
 }

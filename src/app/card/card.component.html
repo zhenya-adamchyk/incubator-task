@@ -1,9 +1,0 @@
-<div class="card">
-  <h3 class="card__title">{{card?.title}}</h3>
-  <div class="card__date">Date of creation: {{newDate}}</div>
-  <div class="card__categories">Categories: {{card?.categories.join(' ')}}</div>
-  <div class="admin" *ngIf="isAdmin">
-    <button class="admin__approve-btn admin-btn">Approve</button>
-    <button class="admin__delete-btn admin-btn">Delete</button>
-  </div>
-</div>

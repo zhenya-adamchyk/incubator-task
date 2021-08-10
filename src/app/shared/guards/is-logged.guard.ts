@@ -14,7 +14,6 @@ export class IsLoggedGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       return this.authService.checkAuth().pipe(map((user: User) => {
-        console.log(!!user)
         if (!!user) {
           this.router.navigate(['/main']);
           return false;

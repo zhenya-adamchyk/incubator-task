@@ -1,4 +1,4 @@
-<div class="main-container">
+<div class="main-container" *ngIf="!responseError">
   <div class="question">
     <h2>New question</h2>
     <form [formGroup]="newQuestionForm" novalidate class="question__form">
@@ -9,9 +9,9 @@
       </div>
       <h3>Choose categories</h3>
       <div class="question__categories" formArrayName='items'>
-        <div *ngFor="let category of newQuestionForm.controls.items.value; let i = index">
-          <label for="category">{{tags[i]}}</label>
-          <input type="checkbox" formControlName={{i}}>
+        <div *ngFor="let category of newQuestionForm.get('items')['controls']; let i = index">
+          <input type="checkbox" id={{tags[i]}} formControlName={{i}}>
+          <label for={{tags[i]}}>{{tags[i]}}</label>
         </div>
       </div>
     </form>
@@ -19,6 +19,7 @@
       <button type="submit" (click)="submitQuestion()" class="buttons-container__ok-btn">OK</button>
       <button routerLink="/main" class="buttons-container__cancel-btn">Cancel</button>
     </div>
-    <p class="alert-msg" *ngIf="isValidForm">Fill in both fields and select at least one of the categories please</p>
+    <p class="alert-msg" *ngIf="isInvalidForm">Fill in both fields and select at least one of the categories please</p>
   </div>
 </div>
+<p *ngIf="responseError">{{responseError}}</p>

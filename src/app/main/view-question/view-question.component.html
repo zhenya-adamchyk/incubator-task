@@ -1,0 +1,35 @@
+<div class="container" *ngIf="question$ | async as question">
+  <div class="question-view" *ngIf="question && (currentUser !== question.user)">
+    <div class="question-view__header">
+      <p class="question-view__date">{{question.date | date}}</p>
+      <p class="question-view__user">{{question.user}}</p>
+    </div>
+    <h2 class="question-view__title">{{question.title}}</h2>
+    <div class="question-view__text">{{question.text}}</div>
+    <h4>Categories</h4>
+    <ul class="question-view__categories">
+      <li *ngFor="let category of question.categories">{{category}}</li>
+    </ul>
+    <div class="admin" *ngIf="isAdmin">
+      <button class="admin__approve-btn admin-btn">Approve</button>
+      <button class="admin__delete-btn admin-btn">Delete</button>
+    </div>
+  </div>
+  <p class="response-error" *ngIf="responseError">{{responseError}}</p>
+  <app-edit-question *ngIf="question && (currentUser === question.user)" [question]="question"></app-edit-question>
+
+  <h3>Create your comment</h3>
+  <textarea class="comments-area" [(ngModel)]="text"></textarea>
+  <p *ngIf="isInvalidArea" class="area-alert">Write your comment</p>
+  <div class="question-view__buttons">
+    <button class="question-view__buttons_add-btn" (click)="addComment()">Add</button>
+    <button class="question-view__buttons_back-btn" routerLink="/main">Back</button>
+  </div>
+  <div class="comments" *ngIf="question">
+    <h3>Comments</h3>
+    <ul class="comments__list" >
+      <app-comment *ngFor="let comment of question.comments" [comment]="comment"></app-comment>
+    </ul>
+  </div>
+</div>
+<p *ngIf="responseError">{{responseError}}</p>

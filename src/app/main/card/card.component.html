@@ -1,0 +1,9 @@
+<div class="card" *ngIf="question" routerLink="/edit-question/{{question.id}}">
+  <h3 class="card__title">{{question.title}}</h3>
+  <div class="card__date">Date of creation: {{question.date | date }}</div>
+  <div class="card__categories">Categories: {{question.categories.join(' ')}}</div>
+  <div class="admin" *ngIf="isAdmin">
+    <button class="admin__approve-btn admin-btn">Approve</button>
+    <button class="admin__delete-btn admin-btn">Delete</button>
+  </div>
+</div>

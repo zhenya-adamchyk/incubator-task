@@ -1,20 +1,19 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { Router } from '@angular/router';
 import  firebase  from 'firebase/app';
 import 'firebase/auth'
-import { Observable } from 'rxjs';
 import { User} from '../interfaces/User'
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class AuthService {
-  userData!: User;
+  userData: User;
 
-  constructor(private fireAuth: AngularFireAuth, private router: Router) { }
+  constructor(private fireAuth: AngularFireAuth) { }
 
   checkAuth(): Observable<User> {
     return this.fireAuth.authState.pipe(map((user: unknown) => {
