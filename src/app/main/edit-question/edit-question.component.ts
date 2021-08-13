@@ -29,7 +29,6 @@ export class EditQuestionComponent implements OnInit {
       "text": new FormControl(this.question.text, [Validators.required]),
       "items": new FormArray(this.tags.map(cat => new FormControl(false)))
     });
-    console.log(this.question)
   }
 
   checkCategories(arr: unknown[]): boolean {
@@ -45,8 +44,7 @@ export class EditQuestionComponent implements OnInit {
         categories: this.newQuestionForm.value.items.map(((v, ind) => v ? this.tags[ind] : '')),
       }
       this.httpService.patchQuestion(this.question.id, obj).subscribe(
-        data => this.router.navigate(['/main']),
-        err => console.log('cant post new question', err)
+        data => this.router.navigate(['/main'])
         );
     } else {
       this.isInvalidForm = true;

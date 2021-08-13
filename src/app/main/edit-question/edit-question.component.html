@@ -1,21 +1,26 @@
-<div class="main-container">
+<div class="container">
   <div class="question">
     <h2>Edit question</h2>
     <form [formGroup]="newQuestionForm" novalidate class="question__form">
       <div>
-        <input class="form-control" formControlName="title"
-        type="text" placeholder="Title"/>
-        <textarea formControlName="text" placeholder="Text" class="text"></textarea>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Title</mat-label>
+          <input matInput formControlName="title" class="form-control">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Your text</mat-label>
+          <textarea matInput formControlName="text"></textarea>
+        </mat-form-field>
       </div>
       <h3>Choose categories</h3>
       <div class="question__categories" formArrayName='items'>
         <div *ngFor="let category of newQuestionForm.get('items')['controls']; let i = index">
-          <input type="checkbox" id={{tags[i]}} formControlName={{i}}>
-          <label for={{tags[i]}}>{{tags[i]}}</label>
+          <mat-checkbox formControlName={{i}}>{{tags[i]}}</mat-checkbox>
         </div>
       </div>
     </form>
-      <button type="submit" (click)="updateQuestion()" class="update-btn">Update</button>
+    <button type="submit" (click)="updateQuestion()" mat-raised-button color="primary">Update</button>
     <p class="alert-msg" *ngIf="isInvalidForm">Fill in both fields and select at least one of the categories please</p>
   </div>
 </div>

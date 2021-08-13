@@ -17,18 +17,17 @@
   </div>
   <p class="response-error" *ngIf="responseError">{{responseError}}</p>
   <app-edit-question *ngIf="question && (currentUser === question.user)" [question]="question"></app-edit-question>
-
+  <button mat-raised-button routerLink="/main" color="warn" class="question-view__back-btn">Back</button>
   <h3>Create your comment</h3>
   <textarea class="comments-area" [(ngModel)]="text"></textarea>
   <p *ngIf="isInvalidArea" class="area-alert">Write your comment</p>
   <div class="question-view__buttons">
-    <button class="question-view__buttons_add-btn" (click)="addComment()">Add</button>
-    <button class="question-view__buttons_back-btn" routerLink="/main">Back</button>
+    <button type="submit" (click)="addComment()" mat-raised-button color="primary">Add</button>
   </div>
   <div class="comments" *ngIf="question">
     <h3>Comments</h3>
     <ul class="comments__list" >
-      <app-comment *ngFor="let comment of question.comments" [comment]="comment"></app-comment>
+      <app-comment *ngFor="let comment of question.comments; let i = index" [comment]="comment" [id]="i" [question]="question"></app-comment>
     </ul>
   </div>
 </div>

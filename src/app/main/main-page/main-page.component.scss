@@ -1,6 +1,11 @@
 .main-container {
   width: 80%;
   margin: 0 auto;
+  border: 2px solid black;
+  background-color: var(--bg-color);
+  color: var(--color-text);
+  border-radius: 10px;
+  padding-bottom: 30px;
 }
 
 .cards-container {
@@ -12,32 +17,12 @@
 }
 
 .add-question {
-  // &::after {
-  //   width: 30px;
-  //   height: 30px;
-  //   content: '';
-  //   border-bottom: 7px solid #2fac4a;
-  //   position: absolute;
-  //   top: 50%;
-  //   left: 50%;
-  //   transform: translate(-50%, -50%);
-  // }
-  // &::before {
-  //   width: 30px;
-  //   height: 30px;
-  //   content: '';
-  //   border-left: 7px solid #2fac4a;
-  //   position: absolute;
-  //   top: calc(50% + 15px);
-  //   left: calc(50% + 15px);
-  //   transform: translate(-50%, -50%);
-  // }
   cursor: pointer;
   text-align: center;
   position: absolute;
   right: 0;
   line-height: 65px;
-  top: calc(100% + 15px);
+  top: calc(100% + 35px);
   width: 70px;
   height: 70px;
   border-radius: 50%;
@@ -45,4 +30,46 @@
   color: #2fac4a;
   font-size: 20px;
   font-weight: bold;
+}
+
+.filters {
+  border-bottom: 2px solid black;
+  color: var(--color-text);
+  height: 60px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+input[type='checkbox'],
+input[type='radio'] {
+  display: none;
+}
+
+
+input[type="radio"]:checked + label,
+input[type="checkbox"]:checked + label {
+  background-color: #2fac4a;
+}
+
+
+.old {
+  color: var(--color-text);
+  min-width: 64px;
+  line-height: 36px;
+  padding: 0 16px;
+  border-radius: 4px;
+  height: 36px;
+  margin-bottom: 0;
+  font-weight: 500;
+}
+
+.line-display {
+  width: 100%;
+}
+
+
+.rotate-180 {
+  transform: rotate(180deg);
 }

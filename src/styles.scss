@@ -1,3 +1,34 @@
+$white: rgb(255,255,255);
+$grey:rgb(242,242,242);
+$black:rgb(92, 83, 83);
+
+:root {
+    --bg-color: #{$white};
+    --bg2-color: #{$grey};
+    --color-text: #{$black};
+    --input-slider: #{$black};
+    --testimonial: #{$white};
+    --burger-color: #{$black};
+}
+
+.light-theme {
+  --bg-color: #{$white};
+  --bg2-color: #{$grey};
+  --color-text: #{$black};
+  --input-slider: #{$black};
+  --testimonial: #{$white};
+  --burger-color: #{$black};
+}
+.black-theme {
+  --bg-color: #{$black};
+  --color-text: #{$white};
+  --input-slider: #{$white};
+  --burger-color: #{$white};
+}
+
+
+
+
 
 * {
   padding: 0;
@@ -77,3 +108,6 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

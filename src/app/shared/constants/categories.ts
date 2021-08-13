@@ -1,1 +1,1 @@
-export const categories = ['Java', '.Net', 'Frontend ', 'Salesforce'];
+export const categories = ['Java', '.Net', 'Frontend', 'Salesforce'];

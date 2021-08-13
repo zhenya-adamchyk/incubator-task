@@ -17,7 +17,6 @@ import { LoginComponent } from './auth/login/login.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { routes } from './app-routing.module';
 import { HeaderComponent } from './shared/header/header.component';
-import { FiltersComponent } from './main/filters/filters.component';
 import { CardComponent } from './main/card/card.component';
 import { HttpClientModule } from '@angular/common/http';
 import { QuestionService } from './shared/services/question.service';
@@ -25,7 +24,22 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NewQuestionComponent } from './main/new-question/new-question.component';
 import { CommentComponent } from './main/comment/comment.component';
 import { ViewQuestionComponent } from './main/view-question/view-question.component';
-import { EditQuestionComponent } from './main/edit-question/edit-question.component'
+import { EditQuestionComponent } from './main/edit-question/edit-question.component';
+import { FilterPipe } from './shared/pipes/filter.pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import {MatCardModule} from '@angular/material/card';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+
 
 @NgModule({
   declarations: [
@@ -34,14 +48,26 @@ import { EditQuestionComponent } from './main/edit-question/edit-question.compon
     MainPageComponent,
     LoginComponent,
     HeaderComponent,
-    FiltersComponent,
     CardComponent,
     NewQuestionComponent,
     CommentComponent,
     ViewQuestionComponent,
-    EditQuestionComponent
+    EditQuestionComponent,
+    FilterPipe,
   ],
   imports: [
+    MatSlideToggleModule,
+    MatCheckboxModule,
+    MatCardModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatSnackBarModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
@@ -52,6 +78,7 @@ import { EditQuestionComponent } from './main/edit-question/edit-question.compon
     RouterModule.forRoot(routes),
     HttpClientModule,
     NgbModule,
+    BrowserAnimationsModule,
   ],
   providers: [AuthService, AuthGuard, QuestionService, DatePipe],
   bootstrap: [AppComponent]

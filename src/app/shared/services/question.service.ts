@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { Question } from '../interfaces/question';
 import { map } from 'rxjs/operators';
+import { Comment } from '../interfaces/comment';
 
 @Injectable({
   providedIn: 'root'
@@ -30,8 +31,12 @@ export class QuestionService {
     }))
   }
 
-  patchQuestion(id: string, updatedQuestion: any) {
+  patchQuestion(id: string, updatedQuestion: Question) {
     return this.http.patch(`${this.baseUrl}/questions/${id}.json`, updatedQuestion)
+  }
+
+  patchComment(id: string, idComment: number, resolve: Comment) {
+    return this.http.patch(`${this.baseUrl}/questions/${id}/comments/${idComment}.json`, resolve)
   }
 
   makeArrFromResponse(response: unknown): Question[]  {

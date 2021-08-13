@@ -1,17 +1,15 @@
-.main-container {
-  width: 80%;
-  margin: 0 auto;
-}
-
 .question {
-  max-width: 800px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   border: 2px solid black;
+  background-color: var(--bg-color);
+  color: var(--color-text);
   border-radius: 20px;
   text-align: center;
+  width: 80%;
+  padding-bottom: 20px;
 
   &__categories {
     display: flex;
@@ -25,20 +23,14 @@
   }
 }
 
-.update-btn {
-  width: 60px;
-  height: 40px;
-  border-radius: 5px;
-  background-color: #2fac4a;
-  color: white;
-  margin-bottom: 20px;
+.example-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-input {
-	display: block;
-	width: 100%;
-	border-radius: 10px;
-	border: 1px solid black;
+.example-full-width {
+  width: 100%;
 }
 
 .text {
@@ -56,45 +48,6 @@ input {
   color: red;
 }
 
-input[type="checkbox"] { display: none; }
-
-input[type="checkbox"] + label {
-  display: block;
-  position: relative;
-  padding-left: 35px;
-  margin-bottom: 20px;
-  font: 14px/20px 'Open Sans', Arial, sans-serif;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
+mat-label {
+  color: var(--color-text);
 }
-
-input[type="checkbox"] + label:last-child { margin-bottom: 0; }
-
-input[type="checkbox"] + label:before {
-  content: '';
-  display: block;
-  width: 20px;
-  height: 20px;
-  border: 1px solid #6cc0e5;
-  position: absolute;
-  left: 0;
-  top: 0;
-  -webkit-transition: all .12s, border-color .08s;
-  transition: all .12s, border-color .08s;
-}
-
-input[type="checkbox"]:checked + label:before {
-  width: 10px;
-  top: -5px;
-  left: 5px;
-  border-radius: 0;
-  border-top-color: transparent;
-  border-left-color: transparent;
-  -webkit-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-
-
-

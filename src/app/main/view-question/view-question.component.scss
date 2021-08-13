@@ -9,7 +9,8 @@
   flex-direction: column;
   align-items: center;
   position: relative;
-  margin-bottom: 30px;
+  background-color: var(--bg-color);
+  color: var(--color-text);
 
   &__header {
     width: 80%;
@@ -23,6 +24,7 @@
     width: 80%;
     border-bottom: 1px solid black;
     margin: 0 auto;
+    word-wrap: break-word;
   }
   &__text {
     width: 80%;
@@ -35,27 +37,8 @@
     justify-content: space-around;
   }
 
-  &__buttons {
-    display: block;
-    margin: 0 auto;
-    width: 20%;
-    display: flex;
-    justify-content: space-between;
-
-    &_back-btn {
-      width: 60px;
-      height: 40px;
-      border-radius: 5px;
-      background-color: rgb(219, 73, 28);
-      color: white;
-    }
-    &_add-btn {
-      width: 60px;
-      height: 40px;
-      border-radius: 5px;
-      background-color: #2fac4a;
-      color: white;
-    }
+  &__back-btn {
+    margin: 15px 0;
   }
 }
 
@@ -72,6 +55,8 @@
 }
 
 .comments-area {
+  background-color: var(--bg-color);
+  color: var(--color-text);
   display: block;
   margin: 0 auto;
   width: 80%;
@@ -82,6 +67,8 @@
   margin-bottom: 20px;
 }
 .comments {
+  background-color: var(--bg-color);
+  color: var(--color-text);
   font-size: 20px;
   border-radius: 10px;
   border: 2px solid black;
@@ -102,4 +89,8 @@
 .area-alert {
   color: red;
   font-size: 15px;
+}
+
+mat-label {
+  color: var(--color-text);
 }

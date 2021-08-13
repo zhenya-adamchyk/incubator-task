@@ -2,22 +2,24 @@
   <div class="question">
     <h2>New question</h2>
     <form [formGroup]="newQuestionForm" novalidate class="question__form">
-      <div>
-        <input class="form-control" formControlName="title"
-        type="text" placeholder="Title"/>
-        <textarea formControlName="text" placeholder="Text" class="text"></textarea>
-      </div>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Title</mat-label>
+            <input matInput formControlName="title" class="form-control">
+          </mat-form-field>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Your text</mat-label>
+            <textarea matInput formControlName="text"></textarea>
+          </mat-form-field>
       <h3>Choose categories</h3>
       <div class="question__categories" formArrayName='items'>
         <div *ngFor="let category of newQuestionForm.get('items')['controls']; let i = index">
-          <input type="checkbox" id={{tags[i]}} formControlName={{i}}>
-          <label for={{tags[i]}}>{{tags[i]}}</label>
+          <mat-checkbox formControlName={{i}}>{{tags[i]}}</mat-checkbox>
         </div>
       </div>
     </form>
     <div class="buttons-container">
-      <button type="submit" (click)="submitQuestion()" class="buttons-container__ok-btn">OK</button>
-      <button routerLink="/main" class="buttons-container__cancel-btn">Cancel</button>
+      <button type="submit" (click)="submitQuestion()" mat-raised-button color="primary">OK</button>
+      <button mat-raised-button routerLink="/main" color="warn">Cancel</button>
     </div>
     <p class="alert-msg" *ngIf="isInvalidForm">Fill in both fields and select at least one of the categories please</p>
   </div>

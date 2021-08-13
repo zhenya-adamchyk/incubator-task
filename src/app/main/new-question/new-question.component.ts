@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from 'src/app/shared/interfaces/User';
 import  { categories }  from '../../shared/constants/categories';
 import { Question } from '../../shared/interfaces/question';
 import { AuthService } from '../../shared/services/auth.service';
@@ -17,7 +18,7 @@ export class NewQuestionComponent implements OnInit {
   newQuestionForm: FormGroup;
   items: FormArray;
   isInvalidForm!: boolean;
-  user
+  user: User;
   responseError: string;
 
   constructor(private httpService: QuestionService, private router: Router, public authService: AuthService) {
@@ -38,14 +39,13 @@ export class NewQuestionComponent implements OnInit {
   }
 
   submitQuestion() {
-    console.log(this.newQuestionForm.value.items)
     if (this.newQuestionForm.value.title && this.newQuestionForm.value.text && this.checkCategories(this.newQuestionForm.value.items)) {
       this.isInvalidForm = false;
       const obj: Question = {
         title: this.newQuestionForm.value.title,
         text: this.newQuestionForm.value.text,
         date: new Date().getTime(),
-        categories: this.newQuestionForm.value.items.map(((v, ind) => v ? this.tags[ind] : '')),
+        categories: this.newQuestionForm.value.items.map(((v, ind) => v ? this.tags[ind] : '')).filter(v => v !== ''),
         user: this.user.email,
         id: '',
         comments: []
