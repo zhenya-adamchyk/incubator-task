@@ -14,13 +14,15 @@ import { Question } from '../../shared/interfaces/question';
 export class EditQuestionComponent implements OnInit {
 
   newQuestionForm: FormGroup;
-  items!: FormArray;
+  items: FormArray;
   isInvalidForm!: boolean;
   tags: string[];
-  @Input() question;
+  isAdmin: boolean;
+  @Input() question: Question;
 
   constructor(private httpService: QuestionService, private router: Router, public authService: AuthService) {
     this.tags = categories;
+    this.isAdmin = authService.isAdmin
    }
 
   ngOnInit(): void {
@@ -49,6 +51,17 @@ export class EditQuestionComponent implements OnInit {
     } else {
       this.isInvalidForm = true;
     }
+  }
+
+  deleteQuestion(): void {
+    this.httpService.deleteQuestion(this.question.id).subscribe();
+  }
+
+  approve(): void {
+    const obj: Question = {
+      approve: true
+    }
+    this.httpService.patchQuestion(this.question.id, obj).subscribe()
   }
 
 }

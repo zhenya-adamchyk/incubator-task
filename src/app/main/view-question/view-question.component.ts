@@ -11,6 +11,7 @@ import { Comment } from 'src/app/shared/interfaces/comment';
   templateUrl: './view-question.component.html',
   styleUrls: ['./view-question.component.scss']
 })
+
 export class ViewQuestionComponent implements OnInit {
 
   question: Question
@@ -20,13 +21,15 @@ export class ViewQuestionComponent implements OnInit {
     tap(v =>  this.question = v)
   )
 
-  isAdmin = false;
+  isAdmin: boolean;
   text: string;
   isInvalidArea: boolean;
   currentUser: string;
   responseError: string;
 
-  constructor(private route: ActivatedRoute, private httpService: QuestionService, private authService: AuthService) { }
+  constructor(private route: ActivatedRoute, private httpService: QuestionService, private authService: AuthService) {
+    this.isAdmin = authService.isAdmin
+   }
 
   ngOnInit() {
       this.currentUser = this.authService.userData.email;
@@ -41,14 +44,21 @@ export class ViewQuestionComponent implements OnInit {
         date: new Date().getTime(),
         resolved: false,
       }
-      if (this.question.comments) {
-        this.question.comments.push(newComment)
-      } else {
-        this.question.comments = [newComment]
-      }
+      this.question.comments ? this.question.comments.push(newComment) : this.question.comments = [newComment]
       this.httpService.patchQuestion(this.question.id, this.question).subscribe()
     } else {
       this.isInvalidArea = true
     }
+  }
+
+  deleteQuestion(): void {
+    this.httpService.deleteQuestion(this.question.id).subscribe();
+  }
+
+  approve(): void {
+    const obj: Question = {
+      approve: true
+    }
+    this.httpService.patchQuestion(this.question.id, obj).subscribe()
   }
 }

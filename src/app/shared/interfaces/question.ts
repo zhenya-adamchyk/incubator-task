@@ -7,4 +7,5 @@ export interface Question {
   categories?: string[];
   user?: string;
   comments?: Comment[];
+  approve?: boolean;
 }

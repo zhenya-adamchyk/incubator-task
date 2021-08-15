@@ -48,7 +48,8 @@ export class NewQuestionComponent implements OnInit {
         categories: this.newQuestionForm.value.items.map(((v, ind) => v ? this.tags[ind] : '')).filter(v => v !== ''),
         user: this.user.email,
         id: '',
-        comments: []
+        comments: [],
+        approve: false,
       }
       this.httpService.postQuestion(obj).subscribe(
         data => this.router.navigate(['/main']),

@@ -1,4 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { QuestionService } from 'src/app/shared/services/question.service';
 import { Question } from '../../shared/interfaces/question';
 
 @Component({
@@ -8,11 +10,22 @@ import { Question } from '../../shared/interfaces/question';
 })
 export class CardComponent {
 
-  @Input() question: Question
+  @Input() question: Question;
+  @Output() deleteQuestion = new EventEmitter<string>();
+  @Output() approveQuestion = new EventEmitter<string>();
 
-  isAdmin = false;
+  isAdmin: boolean;
 
-  constructor() {
+  constructor(public authService: AuthService, private httpService: QuestionService) {
+    this.isAdmin = authService.isAdmin
+  }
+
+  delete(id: string) {
+    this.deleteQuestion.emit(id);
+  }
+
+  approve(id: string): void {
+    this.approveQuestion.emit(id);
   }
 
 }

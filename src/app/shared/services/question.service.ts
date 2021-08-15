@@ -35,6 +35,10 @@ export class QuestionService {
     return this.http.patch(`${this.baseUrl}/questions/${id}.json`, updatedQuestion)
   }
 
+  deleteQuestion(id: string) {
+    return this.http.delete(`${this.baseUrl}/questions/${id}.json`)
+  }
+
   patchComment(id: string, idComment: number, resolve: Comment) {
     return this.http.patch(`${this.baseUrl}/questions/${id}/comments/${idComment}.json`, resolve)
   }

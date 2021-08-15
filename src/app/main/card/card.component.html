@@ -1,18 +1,11 @@
-<mat-card class="example-card" *ngIf="question" routerLink="/edit-question/{{question.id}}">
-  <mat-card-header class="card-height">
-    <!-- <div mat-card-avatar class="example-header-image"></div> -->
+<mat-card class="example-card" *ngIf="question">
+  <mat-card-header class="card-height" routerLink="/edit-question/{{question.id}}">
     <mat-card-title>{{question.title}}</mat-card-title>
     <mat-card-subtitle>Date of creation: {{question.date | date }}</mat-card-subtitle>
     <mat-card-subtitle>Categories: {{question.categories.join(' ')}}</mat-card-subtitle>
   </mat-card-header>
-  <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
-  <!-- <mat-card-content>
-    <p>
-      Categories: {{question.categories.join(' ')}}
-    </p>
-  </mat-card-content> -->
-  <mat-card-actions *ngIf="isAdmin">
-    <button mat-button>Approve</button>
-    <button mat-button>Delete</button>
+  <mat-card-actions *ngIf="isAdmin && !question.approve">
+    <button (click)="approve(question.id)" mat-raised-button color="primary">Approve</button>
+    <button (click)="delete(question.id)" mat-raised-button color="warn">Delete</button>
   </mat-card-actions>
 </mat-card>

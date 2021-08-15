@@ -3,8 +3,9 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import  firebase  from 'firebase/app';
 import 'firebase/auth'
 import { User} from '../interfaces/User'
-import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -12,14 +13,18 @@ import { Observable } from 'rxjs';
 
 export class AuthService {
   userData: User;
+  isAdmin: boolean;
+  baseUrl = 'https://incubator-task-default-rtdb.europe-west1.firebasedatabase.app'
 
-  constructor(private fireAuth: AngularFireAuth) { }
+  constructor(private fireAuth: AngularFireAuth, private http: HttpClient) { }
 
   checkAuth(): Observable<User> {
     return this.fireAuth.authState.pipe(map((user: unknown) => {
       this.userData = user as User;
       return this.userData;
-    }))
+    }),
+    switchMap((data: User) => this.getAdmins())
+    )
   }
 
   async loginWithGoogle() {
@@ -44,5 +49,15 @@ export class AuthService {
 
   async SignOut() {
     await this.fireAuth.signOut();
+  }
+
+  getAdmins(): Observable<User> {
+    if (this.userData) {
+      return this.http.get<string[]>(`${this.baseUrl}/admins.json`).pipe(map(data => {
+        this.isAdmin = data.find(v => v === this.userData?.email) ? true : false
+        return this.userData;
+      })) as Observable<User>
+    }
+    return of(this.userData)
   }
 }

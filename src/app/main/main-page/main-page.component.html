@@ -1,11 +1,14 @@
 <div class="main-container" *ngIf="questions$ | async as questions ">
-
 <form [formGroup]="filtersForm" class="filters">
   <button mat-button [matMenuTriggerFor]="filters">Filter</button>
   <mat-menu #filters="matMenu">
     <button mat-menu-item ng (click)="reset()">Reset</button>
     <input type="checkbox" formControlName="solved" id="solved">
     <label for="solved" mat-menu-item>solved</label>
+    <input type="checkbox" formControlName="onlyUser" id="onlyUser">
+    <label for="onlyUser" mat-menu-item>My questions</label>
+    <input type="checkbox" formControlName="moderation" id="moderation">
+    <label for="moderation" mat-menu-item *ngIf="isAdmin">On moderation</label>
     <button mat-menu-item [matMenuTriggerFor]="category">categories</button>
     <button mat-menu-item [matMenuTriggerFor]="date">date</button>
   </mat-menu>
@@ -27,12 +30,10 @@
     <input id="all" type="radio" value="all" formControlName="time">
     <label mat-menu-item for="all">All time</label>
   </mat-menu>
-
   <input type="checkbox" formControlName="last" id="last">
   <label mat-menu-item for="last" class="old" style="background-color:transparent;">Sort by date
     <img [ngClass]="{'rotate-180': filtersForm.value.last}" src="assets/down-arrow.png" alt="">
   </label>
-
   <button mat-button [matMenuTriggerFor]="settings">Settings</button>
   <mat-menu #settings="matMenu">
     <input id="table" type="radio" value="0" formControlName="display">
@@ -43,11 +44,10 @@
 </form>
   <div class="cards-container">
     <app-card *ngFor="let question of questions | filter : filtersForm.value"
-      [question]="question" [ngClass]="{'line-display': filtersForm.value.display > 0}"></app-card>
+     (deleteQuestion)="deleteQuestion($event)"
+     (approveQuestion)="approveQuestion($event)"
+     [question]="question" [ngClass]="{'line-display': filtersForm.value.display > 0}"></app-card>
     <div routerLink="/new-question" class="add-question">Add</div>
   </div>
   <p class="response-error" *ngIf="responseError">{{responseError}}</p>
 </div>
-
-
-

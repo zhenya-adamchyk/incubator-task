@@ -1,5 +1,5 @@
 <div class="container" *ngIf="question$ | async as question">
-  <div class="question-view" *ngIf="question && (currentUser !== question.user)">
+  <div class="question-view" *ngIf="question && (currentUser !== question.user || question.approve)">
     <div class="question-view__header">
       <p class="question-view__date">{{question.date | date}}</p>
       <p class="question-view__user">{{question.user}}</p>
@@ -10,13 +10,13 @@
     <ul class="question-view__categories">
       <li *ngFor="let category of question.categories">{{category}}</li>
     </ul>
-    <div class="admin" *ngIf="isAdmin">
-      <button class="admin__approve-btn admin-btn">Approve</button>
-      <button class="admin__delete-btn admin-btn">Delete</button>
+    <div class="admin" *ngIf="isAdmin && !question.approve">
+      <button (click)="approve()" routerLink="/main" mat-raised-button color="primary">Approve</button>
+      <button (click)="deleteQuestion()" mat-raised-button color="warn">Delete</button>
     </div>
   </div>
   <p class="response-error" *ngIf="responseError">{{responseError}}</p>
-  <app-edit-question *ngIf="question && (currentUser === question.user)" [question]="question"></app-edit-question>
+  <app-edit-question *ngIf="question && (currentUser === question.user && !question.approve)" [question]="question"></app-edit-question>
   <button mat-raised-button routerLink="/main" color="warn" class="question-view__back-btn">Back</button>
   <h3>Create your comment</h3>
   <textarea class="comments-area" [(ngModel)]="text"></textarea>

@@ -1,4 +1,5 @@
 .question {
+  position: relative;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -21,6 +22,15 @@
   &__form {
     width: 80%;
   }
+}
+
+.admin {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 21px;
+  right: 20px;
+  width: 20%;
 }
 
 .example-form {

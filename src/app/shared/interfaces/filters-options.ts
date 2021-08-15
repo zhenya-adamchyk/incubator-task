@@ -5,4 +5,6 @@ export interface FiltersOptions {
   solved: boolean;
   last: boolean;
   display: string;
+  onlyUser: boolean;
+  moderation: boolean;
 }
