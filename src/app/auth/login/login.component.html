@@ -17,7 +17,7 @@
     </div>
     <div class="watch-btn" (click)="watchPass()"></div>
   </div>
-  <div class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}</div>
+  <div class="alert alert-danger" *ngIf="messengerMessage">{{messengerMessage}}</div>
   <button (click)="SignIn()" class="submit-btn" [disabled]="registrationForm.invalid">Sign in</button>
   <div class="login__messengers">
     <button (click)="loginWithGoogle()"><img src="assets/free-icon-google-symbol-2875404.png" alt="google"></button>

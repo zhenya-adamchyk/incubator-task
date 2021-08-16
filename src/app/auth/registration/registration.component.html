@@ -8,7 +8,6 @@
         invalid email
       </div>
     </div>
-
     <div class="form-group">
       <input class="form-control" name="password" formControlName="userPassword"
       [type]="passwordVisible ? 'text' : 'password'" placeholder="password" maxlength="20"/>
@@ -18,7 +17,7 @@
       </div>
       <div class="watch-btn" (click)="watchPass()"></div>
     </div>
-    <div class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}</div>
+    <div class="alert alert-danger" *ngIf="messengerMessage">{{messengerMessage}}</div>
     <button (click)="SignUp()" class="submit-btn" [disabled]="registrationForm.invalid" type="submit">Registration</button>
     <div class="login__messengers">
       <button (click)="loginWithGoogle()"><img src="assets/free-icon-google-symbol-2875404.png" alt="google"></button>

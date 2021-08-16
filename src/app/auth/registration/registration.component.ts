@@ -16,9 +16,6 @@ import { Router } from '@angular/router'
 
 export class RegistrationComponent {
 
-  nameValue = '';
-  passwordValue = '';
-  errorMessage = '';
   messengerMessage = '';
   passwordVisible = false;
   registrationForm: FormGroup;
@@ -64,7 +61,7 @@ export class RegistrationComponent {
     if (this.registrationForm.value.email && this.registrationForm.value.userPassword) {
       this.authService.SignUp(this.registrationForm.value.email, this.registrationForm.value.userPassword)
       .then(() => this.router.navigate(['/main']))
-      .catch(error => this.errorMessage = error.message);
+      .catch(error => this.messengerMessage = error.message);
     }
   }
 
