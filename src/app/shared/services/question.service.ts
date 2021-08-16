@@ -15,7 +15,7 @@ export class QuestionService {
 
   getQuestions(): Observable<Question[]> {
     return this.http.get<Question[]>(`${environment.firebase.databaseURL}/questions.json`).pipe(map(v => {
-      return this.makeArrFromResponse(v);
+      return Object.keys(v).map(key => ({ ...v[key], id: key }))
     }))
   }
 
@@ -37,14 +37,5 @@ export class QuestionService {
 
   patchComment(id: string, idComment: number, resolve: Comment) {
     return this.http.patch(`${environment.firebase.databaseURL}/questions/${id}/comments/${idComment}.json`, resolve)
-  }
-
-  makeArrFromResponse(response: unknown): Question[]  {
-    const idArr = Object.keys(response);
-    const resArr = Object.values(response);
-    for (let i = 0; i < resArr.length; i++) {
-      resArr[i].id = idArr[i]
-    }
-    return resArr;
   }
 }
