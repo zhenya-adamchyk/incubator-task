@@ -8,4 +8,5 @@
     <button (click)="approve(question.id)" mat-raised-button color="primary">Approve</button>
     <button (click)="delete(question.id)" mat-raised-button color="warn">Delete</button>
   </mat-card-actions>
+  <p *ngIf="!question.approve" class="moderation">Moderation</p>
 </mat-card>
