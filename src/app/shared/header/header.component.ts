@@ -27,7 +27,7 @@ export class HeaderComponent implements OnInit {
 
   SignOut() {
     this.authService.SignOut()
-    .then(() => this.router.navigate(['/']))
+    .then(() => this.router.navigate(['/login']))
   }
 
   switchTheme() {
