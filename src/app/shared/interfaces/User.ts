@@ -4,4 +4,5 @@ export interface User {
   displayName: string;
   protoURL: string;
   emailVerified: boolean;
+  isAdmin: boolean;
 }

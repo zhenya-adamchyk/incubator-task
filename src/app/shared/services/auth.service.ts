@@ -14,7 +14,6 @@ import { environment } from '../../../environments/environment';
 
 export class AuthService {
   userData: User;
-  isAdmin: boolean;
 
   constructor(private fireAuth: AngularFireAuth, private http: HttpClient) { }
 
@@ -54,7 +53,8 @@ export class AuthService {
   getAdmins(): Observable<User> {
     if (this.userData) {
       return this.http.get<string[]>(`${environment.firebase.databaseURL}/admins.json`).pipe(map(data => {
-        this.isAdmin = data.find(v => v === this.userData?.email) ? true : false
+        data.find(v => v === this.userData?.email) ? true : false;
+        this.userData.isAdmin = data.find(v => v === this.userData?.email) ? true : false;
         return this.userData;
       })) as Observable<User>
     }

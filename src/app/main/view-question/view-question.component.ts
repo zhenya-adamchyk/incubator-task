@@ -28,7 +28,7 @@ export class ViewQuestionComponent implements OnInit {
   responseError: string;
 
   constructor(private route: ActivatedRoute, private httpService: QuestionService, private authService: AuthService) {
-    this.isAdmin = authService.isAdmin
+    this.isAdmin = authService.userData.isAdmin
    }
 
   ngOnInit() {

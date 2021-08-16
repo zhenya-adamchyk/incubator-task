@@ -19,7 +19,7 @@ export class FilterPipe implements PipeTransform {
   isAdmin: boolean
 
   constructor(public authService: AuthService) {
-    this.isAdmin = authService.isAdmin;
+    this.isAdmin = authService.userData.isAdmin;
     this.categories = categories;
     this.milleSecInDay = milleSecInDay
     this.user = authService.userData;

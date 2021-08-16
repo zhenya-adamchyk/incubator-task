@@ -26,7 +26,7 @@ export class MainPageComponent implements OnInit{
 
   constructor(public authService: AuthService, public router: Router, private httpService: QuestionService) {
     this.lineDisplay = JSON.parse(localStorage.getItem('questionsView'));
-    this.isAdmin = authService.isAdmin;
+    this.isAdmin = authService.userData.isAdmin;
     this.categories = categories;
     this.filtersForm = new FormGroup({
       "solved": new FormControl(),

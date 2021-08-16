@@ -17,7 +17,7 @@ export class CardComponent {
   isAdmin: boolean;
 
   constructor(public authService: AuthService, private httpService: QuestionService) {
-    this.isAdmin = authService.isAdmin
+    this.isAdmin = authService.userData.isAdmin
   }
 
   delete(id: string) {

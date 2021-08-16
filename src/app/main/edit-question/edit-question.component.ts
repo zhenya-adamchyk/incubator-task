@@ -22,7 +22,7 @@ export class EditQuestionComponent implements OnInit {
 
   constructor(private httpService: QuestionService, private router: Router, public authService: AuthService) {
     this.tags = categories;
-    this.isAdmin = authService.isAdmin
+    this.isAdmin = authService.userData.isAdmin
    }
 
   ngOnInit(): void {
