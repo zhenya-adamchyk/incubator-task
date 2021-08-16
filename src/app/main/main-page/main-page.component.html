@@ -36,17 +36,17 @@
   </label>
   <button mat-button [matMenuTriggerFor]="settings">Settings</button>
   <mat-menu #settings="matMenu">
-    <input id="table" type="radio" value="0" formControlName="display">
-    <label mat-menu-item for="table">Table</label>
-    <input id="line" type="radio" value="1" formControlName="display">
-    <label mat-menu-item for="line">Line</label>
+    <input id="table" type="radio" value="table" formControlName="display">
+    <label mat-menu-item for="table" (click)="setQuestionsView(false)">Table</label>
+    <input id="line" type="radio" value="line" formControlName="display">
+    <label mat-menu-item for="line" (click)="setQuestionsView(true)">Line</label>
   </mat-menu>
 </form>
   <div class="cards-container">
     <app-card *ngFor="let question of questions | filter : filtersForm.value"
      (deleteQuestion)="deleteQuestion($event)"
      (approveQuestion)="approveQuestion($event)"
-     [question]="question" [ngClass]="{'line-display': filtersForm.value.display > 0}"></app-card>
+     [question]="question" [ngClass]="{'line-display': lineDisplay}"></app-card>
     <div routerLink="/new-question" class="add-question">Add</div>
   </div>
   <p class="response-error" *ngIf="responseError">{{responseError}}</p>

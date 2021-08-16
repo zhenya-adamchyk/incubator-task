@@ -22,8 +22,10 @@ export class MainPageComponent implements OnInit{
   isAdmin: boolean;
   refreshQuestions$ = new BehaviorSubject<boolean>(true)
   questions$: Observable<Question[]>
+  lineDisplay: boolean;
 
   constructor(public authService: AuthService, public router: Router, private httpService: QuestionService) {
+    this.lineDisplay = JSON.parse(localStorage.getItem('questionsView'));
     this.isAdmin = authService.isAdmin;
     this.categories = categories;
     this.filtersForm = new FormGroup({
@@ -54,5 +56,11 @@ export class MainPageComponent implements OnInit{
       approve: true
     }
     this.httpService.patchQuestion(id, obj).subscribe(() => this.refreshQuestions$.next(false));
+  }
+
+  setQuestionsView(view: boolean): void {
+    if (view === JSON.parse(localStorage.getItem('questionsView'))) return
+    localStorage.setItem('questionsView', `${view}`)
+    this.lineDisplay = !this.lineDisplay
   }
 }
