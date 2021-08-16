@@ -6,6 +6,7 @@ import { User} from '../interfaces/User'
 import { map, switchMap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,6 @@ import { HttpClient } from '@angular/common/http';
 export class AuthService {
   userData: User;
   isAdmin: boolean;
-  baseUrl = 'https://incubator-task-default-rtdb.europe-west1.firebasedatabase.app'
 
   constructor(private fireAuth: AngularFireAuth, private http: HttpClient) { }
 
@@ -53,7 +53,7 @@ export class AuthService {
 
   getAdmins(): Observable<User> {
     if (this.userData) {
-      return this.http.get<string[]>(`${this.baseUrl}/admins.json`).pipe(map(data => {
+      return this.http.get<string[]>(`${environment.firebase.databaseURL}/admins.json`).pipe(map(data => {
         this.isAdmin = data.find(v => v === this.userData?.email) ? true : false
         return this.userData;
       })) as Observable<User>

@@ -4,43 +4,39 @@ import { Observable } from 'rxjs';
 import { Question } from '../interfaces/question';
 import { map } from 'rxjs/operators';
 import { Comment } from '../interfaces/comment';
-
+import { environment } from '../../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 
 export class QuestionService {
 
-  baseUrl = 'https://incubator-task-default-rtdb.europe-west1.firebasedatabase.app'
-
   constructor(private http: HttpClient) { }
 
   getQuestions(): Observable<Question[]> {
-    return this.http.get<Question[]>(`${this.baseUrl}/questions.json`).pipe(map(v => {
+    return this.http.get<Question[]>(`${environment.firebase.databaseURL}/questions.json`).pipe(map(v => {
       return this.makeArrFromResponse(v);
     }))
   }
 
   postQuestion(card: Question): Observable<Question[]> {
-    return this.http.post<Question[]>(`${this.baseUrl}/questions.json`, card)
+    return this.http.post<Question[]>(`${environment.firebase.databaseURL}/questions.json`, card)
   }
 
   getQuestion(id: string): Observable<Question> {
-    return this.http.get<Question>(`${this.baseUrl}/questions.json`).pipe(map(v => {
-      return this.makeArrFromResponse(v).find(v => v.id === id);
-    }))
+    return this.http.get<Question>(`${environment.firebase.databaseURL}/questions/${id}.json`)
   }
 
   patchQuestion(id: string, updatedQuestion: Question) {
-    return this.http.patch(`${this.baseUrl}/questions/${id}.json`, updatedQuestion)
+    return this.http.patch(`${environment.firebase.databaseURL}/questions/${id}.json`, updatedQuestion)
   }
 
   deleteQuestion(id: string) {
-    return this.http.delete(`${this.baseUrl}/questions/${id}.json`)
+    return this.http.delete(`${environment.firebase.databaseURL}/questions/${id}.json`)
   }
 
   patchComment(id: string, idComment: number, resolve: Comment) {
-    return this.http.patch(`${this.baseUrl}/questions/${id}/comments/${idComment}.json`, resolve)
+    return this.http.patch(`${environment.firebase.databaseURL}/questions/${id}/comments/${idComment}.json`, resolve)
   }
 
   makeArrFromResponse(response: unknown): Question[]  {
