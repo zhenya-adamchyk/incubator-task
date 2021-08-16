@@ -4,7 +4,7 @@
   align-items: center;
   border-radius: 10px;
   margin-bottom: 15px;
-  height: 60px;
+  height: 90px;
   font-size: 20px;
   width: 80%;
   margin: 0 auto;
@@ -12,11 +12,18 @@
   margin-top: 20px;
   background-color: var(--bg-color);
   color: var(--color-text);
+  @media (max-width: 900px) {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 
   &__logo {
+    cursor: pointer;
     margin-right: auto;
     margin-left: 15px;
     margin-bottom: 0;
+    @media (max-width: 900px) {
+      display: none;
+    }
   }
-
 }

@@ -7,19 +7,21 @@
   background-color: rgb(221, 202, 202);
   font-size: 20px;
   padding: 5px;
+  @media (max-width: 900px) {
+    font-size: 15px;
+  }
 
   &__author {
     text-decoration: underline;
+    word-wrap: break-word;
   }
 
   &__text {
     text-align: start;
+    word-wrap: break-word;
   }
 
   &__resolve {
-    position: absolute;
-    right: 10px;
-    bottom: 15px;
   }
 }
 

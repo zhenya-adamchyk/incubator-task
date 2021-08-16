@@ -17,6 +17,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    @media (max-width: 900px) {
+      width: 100%;
+      font-size: 15px;
+      flex-direction: column;
+    }
   }
   &__date {
   }
@@ -35,20 +41,14 @@
     width: 40%;
     display: flex;
     justify-content: space-around;
+    @media (max-width: 900px) {
+      flex-direction: column;
+    }
   }
 
   &__back-btn {
     margin: 15px 0;
   }
-}
-
-.admin {
-  display: flex;
-  justify-content: space-between;
-  position: absolute;
-  bottom: 15px;
-  right: 20px;
-  width: 20%;
 }
 
 .comments-area {
@@ -90,4 +90,14 @@
 
 mat-label {
   color: var(--color-text);
+}
+
+.admin {
+  display: flex;
+  justify-content: space-between;
+  width: 30%;
+  margin-bottom: 20px;
+  @media (max-width: 900px) {
+    width: 70%;
+  }
 }

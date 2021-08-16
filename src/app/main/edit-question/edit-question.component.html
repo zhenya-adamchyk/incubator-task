@@ -17,13 +17,13 @@
         <div *ngFor="let category of newQuestionForm.get('items')['controls']; let i = index">
           <mat-checkbox formControlName={{i}}>{{tags[i]}}</mat-checkbox>
         </div>
-        <div class="admin" *ngIf="isAdmin && !question.approve">
-          <button (click)="approve()" routerLink="/main" mat-raised-button color="primary">Approve</button>
-          <button (click)="deleteQuestion()" mat-raised-button color="warn">Delete</button>
-        </div>
       </div>
     </form>
-    <button type="submit" (click)="updateQuestion()" mat-raised-button color="primary">Update</button>
+    <div class="buttons-container">
+      <button type="submit" (click)="updateQuestion()" mat-raised-button color="primary">Update</button>
+      <button (click)="approve()" *ngIf="isAdmin && !question.approve" routerLink="/main" mat-raised-button color="primary" class="edit-btn">Approve</button>
+      <button (click)="deleteQuestion()" *ngIf="isAdmin && !question.approve" mat-raised-button color="warn">Delete</button>
+    </div>
     <p class="alert-msg" *ngIf="isInvalidForm">Fill in both fields and select at least one of the categories please</p>
   </div>
 </div>

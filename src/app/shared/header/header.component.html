@@ -1,5 +1,5 @@
 <mat-toolbar color="primary" class="header" *ngIf="user">
-  <p class="header__logo">StackNotOverflow</p>
+  <p class="header__logo" routerLink="/main">StackNotOverflow</p>
   <button routerLink="/new-question" mat-raised-button color="primary">Add question</button>
   <button mat-button [matMenuTriggerFor]="menu">{{user}}</button>
   <mat-menu #menu="matMenu">
