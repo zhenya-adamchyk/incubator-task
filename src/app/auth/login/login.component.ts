@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AngularFireDatabase } from '@angular/fire/database';
 import { AuthService } from '../../shared/services/auth.service';
 import { Router } from '@angular/router';
 
@@ -8,10 +7,6 @@ import { Router } from '@angular/router';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  styles: [`
-  input.ng-touched.ng-invalid {border:solid red 2px;}
-  input.ng-touched.ng-valid {border:solid green 2px;}
-  `],
 })
 
 export class LoginComponent {
@@ -20,7 +15,7 @@ export class LoginComponent {
   passwordVisible = false;
   registrationForm: FormGroup;
 
-  constructor(public db: AngularFireDatabase, private authService: AuthService, public router: Router) {
+  constructor(private authService: AuthService, public router: Router) {
     this.registrationForm = new FormGroup({
       "email": new FormControl('', [Validators.required, Validators.email]),
       "userPassword": new FormControl('', [Validators.required, Validators.pattern("[0-9a-zA-Z]{6,}")])

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap, tap } from 'rxjs/operators';
 import { Question } from '../../shared/interfaces/question';
 import { QuestionService } from '../../shared/services/question.service';
@@ -18,8 +18,7 @@ export class ViewQuestionComponent implements OnInit {
 
   readonly question$ = this.route.params.pipe(
     switchMap(param => this.httpService.getQuestion(param.id)),
-    tap(v =>  this.question = v)
-  )
+    tap(v => v ? this.question = v : this.router.navigate(['/main'])),)
 
   isAdmin: boolean;
   text: string;
@@ -27,7 +26,7 @@ export class ViewQuestionComponent implements OnInit {
   currentUser: string;
   responseError: string;
 
-  constructor(private route: ActivatedRoute, private httpService: QuestionService, private authService: AuthService) {
+  constructor(private route: ActivatedRoute, private httpService: QuestionService, private authService: AuthService, public router: Router) {
     this.isAdmin = authService.userData.isAdmin
    }
 
