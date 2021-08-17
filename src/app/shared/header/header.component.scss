@@ -4,7 +4,7 @@
   align-items: center;
   border-radius: 10px;
   margin-bottom: 15px;
-  height: 90px;
+  height: 50px;
   font-size: 20px;
   width: 80%;
   margin: 0 auto;
@@ -12,9 +12,10 @@
   margin-top: 20px;
   background-color: var(--bg-color);
   color: var(--color-text);
-  @media (max-width: 900px) {
+  @media (max-width: 660px) {
     flex-wrap: wrap;
     justify-content: center;
+    height: 110px;
   }
 
   &__logo {

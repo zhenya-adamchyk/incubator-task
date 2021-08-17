@@ -1,12 +1,12 @@
-<mat-card class="example-card" *ngIf="question">
-  <mat-card-header class="card-height" routerLink="/edit-question/{{question.id}}">
-    <mat-card-title>{{question.title}}</mat-card-title>
-    <mat-card-subtitle>Date of creation: {{question.date | date }}</mat-card-subtitle>
-    <mat-card-subtitle>Categories: {{question.categories.join(' ')}}</mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-actions *ngIf="isAdmin && !question.approve">
-    <button (click)="approve(question.id)" mat-raised-button color="primary">Approve</button>
-    <button (click)="delete(question.id)" mat-raised-button color="warn">Delete</button>
-  </mat-card-actions>
+<div class="card" *ngIf="question">
+  <div class="card__container" routerLink="/edit-question/{{question.id}}">
+    <h4 class="card__title">{{question.title}}</h4>
+    <p class="card__date">Date of creation: {{question.date | date }}</p>
+    <p class="card__categories">Categories: {{question.categories.join(' ')}}</p>
+  </div>
   <p *ngIf="!question.approve" class="moderation">Moderation</p>
-</mat-card>
+  <div class="admin" *ngIf="isAdmin && !question.approve">
+    <button (click)="approve(question.id)" mat-raised-button color="primary" class="admin-btn">Approve</button>
+    <button (click)="delete(question.id)" mat-raised-button color="warn" class="admin-btn">Delete</button>
+  </div>
+</div>
