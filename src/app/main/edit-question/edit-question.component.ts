@@ -30,7 +30,7 @@ export class EditQuestionComponent implements OnInit {
     this.newQuestionForm = new FormGroup({
       "title": new FormControl(this.question.title, [Validators.required]),
       "text": new FormControl(this.question.text, [Validators.required]),
-      "items": new FormArray(this.tags.map(cat => new FormControl(false)))
+      "items": new FormArray(this.tags.map((cat,ind) => this.question.categories[ind] ? new FormControl(true) : new FormControl(false)))
     });
   }
 
