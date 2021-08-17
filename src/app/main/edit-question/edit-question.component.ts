@@ -18,6 +18,7 @@ export class EditQuestionComponent implements OnInit {
   isInvalidForm!: boolean;
   tags: string[];
   isAdmin: boolean;
+  responseError: string;
   @Input() question: Question;
 
   constructor(private httpService: QuestionService, private router: Router, public authService: AuthService) {
@@ -46,7 +47,8 @@ export class EditQuestionComponent implements OnInit {
         categories: this.newQuestionForm.value.items.map(((v, ind) => v ? this.tags[ind] : '')),
       }
       this.httpService.patchQuestion(this.question.id, obj).subscribe(
-        data => this.router.navigate(['/main'])
+        data => this.router.navigate(['/main']),
+        err => this.responseError = err
         );
     } else {
       this.isInvalidForm = true;
@@ -54,14 +56,14 @@ export class EditQuestionComponent implements OnInit {
   }
 
   deleteQuestion(): void {
-    this.httpService.deleteQuestion(this.question.id).subscribe();
+    this.httpService.deleteQuestion(this.question.id).subscribe(data => data, err => this.responseError = err);
   }
 
   approve(): void {
     const obj: Question = {
       approve: true
     }
-    this.httpService.patchQuestion(this.question.id, obj).subscribe()
+    this.httpService.patchQuestion(this.question.id, obj).subscribe(data => data, err => this.responseError = err);
   }
 
 }

@@ -1,6 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { AuthService } from 'src/app/shared/services/auth.service';
-import { QuestionService } from 'src/app/shared/services/question.service';
 import { Question } from '../../shared/interfaces/question';
 
 @Component({
@@ -16,16 +15,15 @@ export class CardComponent {
 
   isAdmin: boolean;
 
-  constructor(public authService: AuthService, private httpService: QuestionService) {
+  constructor(public authService: AuthService) {
     this.isAdmin = authService.userData.isAdmin
   }
 
-  delete(id: string) {
+  delete(id: string): void {
     this.deleteQuestion.emit(id);
   }
 
   approve(id: string): void {
     this.approveQuestion.emit(id);
   }
-
 }

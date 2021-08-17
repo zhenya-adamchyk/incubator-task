@@ -42,6 +42,7 @@
     <label mat-menu-item for="line" (click)="setQuestionsView(true)">Line</label>
   </mat-menu>
 </form>
+<p class="response-error" *ngIf="responseError">{{responseError}}</p>
   <div class="cards-container">
     <app-card *ngFor="let question of questions | filter : filtersForm.value"
      (deleteQuestion)="deleteQuestion($event)"
@@ -49,5 +50,5 @@
      [question]="question" [ngClass]="{'line-display': lineDisplay}"></app-card>
     <div routerLink="/new-question" class="add-question">Add</div>
   </div>
-  <p class="response-error" *ngIf="responseError">{{responseError}}</p>
+
 </div>

@@ -67,15 +67,23 @@ mat-label {
 }
 
 .edit-btn {
-  margin: 15px 0;
+  margin: 15px 10px;
 }
 
 .buttons-container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   width: 50%;
   @media (max-width: 900px) {
     flex-direction: column;
   }
+}
+
+.response-error {
+  color: red;
+}
+
+.moderation {
+  color: red;
 }

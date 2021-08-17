@@ -14,6 +14,7 @@
       <button (click)="approve()" routerLink="/main" mat-raised-button color="primary">Approve</button>
       <button (click)="deleteQuestion()" mat-raised-button color="warn">Delete</button>
     </div>
+    <p *ngIf="!question.approve" class="moderation">Moderation</p>
   </div>
   <p class="response-error" *ngIf="responseError">{{responseError}}</p>
   <app-edit-question *ngIf="question && (currentUser === question.user && !question.approve)" [question]="question"></app-edit-question>

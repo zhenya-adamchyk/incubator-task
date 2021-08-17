@@ -37,6 +37,8 @@ export class MainPageComponent implements OnInit{
       "onlyUser": new FormControl(),
       "moderation": new FormControl(),
     })
+    this.filtersForm.patchValue({time:'all', tc:true});
+    !this.lineDisplay ? this.filtersForm.patchValue({display:'table', tc:true}) : this.filtersForm.patchValue({display:'line', tc:true})
    }
 
    ngOnInit() {
@@ -48,14 +50,14 @@ export class MainPageComponent implements OnInit{
    }
 
    deleteQuestion(id:string){
-    this.httpService.deleteQuestion(id).subscribe(() => this.refreshQuestions$.next(false));
+    this.httpService.deleteQuestion(id).subscribe(() => this.refreshQuestions$.next(false), err => this.responseError = err);
   }
 
   approveQuestion(id:string){
     const obj: Question = {
       approve: true
     }
-    this.httpService.patchQuestion(id, obj).subscribe(() => this.refreshQuestions$.next(false));
+    this.httpService.patchQuestion(id, obj).subscribe(() => this.refreshQuestions$.next(false), err => this.responseError = err);
   }
 
   setQuestionsView(view: boolean): void {

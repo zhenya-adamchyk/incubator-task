@@ -20,10 +20,12 @@
       </div>
     </form>
     <div class="buttons-container">
-      <button type="submit" (click)="updateQuestion()" mat-raised-button color="primary">Update</button>
+      <button type="submit" (click)="updateQuestion()" mat-raised-button color="primary" class="edit-btn">Update</button>
       <button (click)="approve()" *ngIf="isAdmin && !question.approve" routerLink="/main" mat-raised-button color="primary" class="edit-btn">Approve</button>
-      <button (click)="deleteQuestion()" *ngIf="isAdmin && !question.approve" mat-raised-button color="warn">Delete</button>
+      <button (click)="deleteQuestion()" *ngIf="isAdmin && !question.approve" mat-raised-button color="warn" class="edit-btn">Delete</button>
     </div>
+    <p *ngIf="!question.approve" class="moderation">Moderation</p>
+    <p class="response-error" *ngIf="responseError">{{responseError}}</p>
     <p class="alert-msg" *ngIf="isInvalidForm">Fill in both fields and select at least one of the categories please</p>
   </div>
 </div>
