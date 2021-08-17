@@ -47,6 +47,8 @@ export class MainPageComponent implements OnInit{
 
    reset(): void {
      this.filtersForm.reset();
+     this.filtersForm.patchValue({time:'all', tc:true});
+     !this.lineDisplay ? this.filtersForm.patchValue({display:'table', tc:true}) : this.filtersForm.patchValue({display:'line', tc:true})
    }
 
    deleteQuestion(id:string){
