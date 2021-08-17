@@ -11,9 +11,10 @@ import { Router } from '@angular/router';
 
 export class LoginComponent {
 
-  messengerMessage = '';
+  messengerMessage: string
   passwordVisible = false;
   registrationForm: FormGroup;
+  signInError: string
 
   constructor(private authService: AuthService, public router: Router) {
     this.registrationForm = new FormGroup({
@@ -60,7 +61,7 @@ export class LoginComponent {
     if (this.registrationForm.value.email && this.registrationForm.value.userPassword) {
       this.authService.SignIn(this.registrationForm.value.email, this.registrationForm.value.userPassword)
       .then(() => this.router.navigate(['/main']))
-      .catch(error => this.messengerMessage = error.message);
+      .catch(error => this.signInError = error.message);
     }
   }
 }

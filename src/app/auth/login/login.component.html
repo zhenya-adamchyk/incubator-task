@@ -24,6 +24,6 @@
     <button (click)="loginWithFaceBook()"><img src="assets/facebook.png" alt="facebook"></button>
     <button (click)="loginWithGithub()"><img src="assets/GitHub-Mark.png" alt="GitHub"></button>
   </div>
-  <div style="color: red;" class="alert alert-danger" *ngIf="messengerMessage">{{messengerMessage}}</div>
+  <p style="color: red;" class="alert alert-danger" *ngIf="signInError">{{signInError}}</p>
   <a routerLink="/" class="login__registration">Back to registration</a>
 </form>

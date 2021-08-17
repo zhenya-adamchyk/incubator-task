@@ -6,7 +6,7 @@ import { AuthService } from '../../shared/services/auth.service';
 import { QuestionService } from '../../shared/services/question.service';
 import { categories } from '../../shared/constants/categories';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
-import { switchMap } from 'rxjs/operators';
+import { catchError, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-main-page',
@@ -20,8 +20,8 @@ export class MainPageComponent implements OnInit{
   categories: string[];
   filtersForm: FormGroup;
   isAdmin: boolean;
-  refreshQuestions$ = new BehaviorSubject<boolean>(true)
-  questions$: Observable<Question[]>
+  refreshQuestions$ = new BehaviorSubject<boolean>(true);
+  questions$: Observable<Question[]>;
   lineDisplay: boolean;
 
   constructor(public authService: AuthService, public router: Router, private httpService: QuestionService) {
@@ -42,7 +42,7 @@ export class MainPageComponent implements OnInit{
    }
 
    ngOnInit() {
-    this.questions$ = this.refreshQuestions$.pipe(switchMap(() => this.httpService.getQuestions()))
+    this.questions$ = this.refreshQuestions$.pipe(switchMap(() => this.httpService.getQuestions()),catchError(() => this.router.navigate(['/new-question']))) as Observable<Question[]>;
    }
 
    reset(): void {

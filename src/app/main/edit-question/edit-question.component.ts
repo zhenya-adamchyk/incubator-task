@@ -30,7 +30,7 @@ export class EditQuestionComponent implements OnInit {
     this.newQuestionForm = new FormGroup({
       "title": new FormControl(this.question.title, [Validators.required]),
       "text": new FormControl(this.question.text, [Validators.required]),
-      "items": new FormArray(this.tags.map((cat,ind) => this.question.categories[ind] ? new FormControl(true) : new FormControl(false)))
+      "items": new FormArray(this.tags.map(cat => this.question.categories.find(v => v === cat) ? new FormControl(true) : new FormControl(false)))
     });
   }
 
@@ -44,7 +44,7 @@ export class EditQuestionComponent implements OnInit {
       const obj = {
         title: this.newQuestionForm.value.title,
         text: this.newQuestionForm.value.text,
-        categories: this.newQuestionForm.value.items.map(((v, ind) => v ? this.tags[ind] : '')),
+        categories: this.newQuestionForm.value.items.map(((v, ind) => v ? this.tags[ind] : '')).filter(v => v)
       }
       this.httpService.patchQuestion(this.question.id, obj).subscribe(
         data => this.router.navigate(['/main']),
@@ -56,6 +56,7 @@ export class EditQuestionComponent implements OnInit {
   }
 
   deleteQuestion(): void {
+    console.log(this.question.id)
     this.httpService.deleteQuestion(this.question.id).subscribe(data => data, err => this.responseError = err);
   }
 
